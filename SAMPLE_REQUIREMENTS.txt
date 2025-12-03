@@ -1,0 +1,66 @@
+Sample Software Requirements for Testing
+=========================================
+
+You can use these sample requirements to test the AI Coder system:
+
+---
+
+OPTION 1: Simple Calculator
+----------------------------
+Create a calculator application that can perform basic arithmetic operations
+including addition, subtraction, multiplication, and division. The calculator
+should handle invalid inputs gracefully and support decimal numbers. It should
+also prevent division by zero errors.
+
+---
+
+OPTION 2: To-Do List Manager
+-----------------------------
+Build a to-do list application that allows users to:
+- Add new tasks with descriptions
+- Mark tasks as complete
+- Delete tasks
+- List all tasks with their status
+- Save tasks to a file
+- Load tasks from a file
+
+The application should use a simple command-line interface.
+
+---
+
+OPTION 3: Temperature Converter
+--------------------------------
+Create a temperature conversion utility that converts between Celsius,
+Fahrenheit, and Kelvin. The program should:
+- Accept temperature input with a unit
+- Convert to the other two units
+- Display all three temperatures
+- Validate that Kelvin values are not negative
+- Handle decimal values
+
+---
+
+OPTION 4: Simple Banking System
+--------------------------------
+Develop a basic banking system that supports:
+- Creating bank accounts with unique account numbers
+- Depositing money
+- Withdrawing money (with balance checks)
+- Checking account balance
+- Transferring money between accounts
+- Transaction history logging
+
+The system should prevent overdrafts and handle invalid transactions.
+
+---
+
+OPTION 5: Text File Word Counter
+---------------------------------
+Build a program that analyzes text files and provides:
+- Total word count
+- Total character count
+- Number of lines
+- Most frequently used words (top 10)
+- Average word length
+
+The program should handle different text encodings and large files efficiently.
