@@ -1,5 +1,5 @@
 // Name: Abdul-Salam Bdaiwi
-// Student ID: XXXXXXXX
+// Student ID: bdaiwia
 // This file tracks the usage of AI models including API calls and tokens
 
 import fs from 'fs';

@@ -1,5 +1,5 @@
 // Name: Abdul-Salam Bdaiwi, Leah Kang, Parsa Salah
-// Student ID: XXXXXXXX
+// Student ID: bdaiwia, leahyk, salahshp
 // This file orchestrates the multi-agent system
 
 import { CoordinatorAgent } from './agents/coordinatorAgent.js';

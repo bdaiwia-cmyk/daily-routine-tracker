@@ -1,5 +1,5 @@
 // Name: Leah Kang
-// Student ID: XXXXXXXX
+// Student ID: leahyk
 // This file implements the MCP client that agents use to communicate
 
 import { mcpServer } from './mcpServer.js';
