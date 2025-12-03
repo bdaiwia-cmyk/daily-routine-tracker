@@ -1,19 +1,16 @@
-// Name: Abdul-Salam Bdaiwi
-// Student ID: bdaiwia
-// This file tracks the usage of AI models including API calls and tokens
+// name: abdul-salam bdaiwi
+// student id: bdaiwia
+// this file tracks api usage for the models
 
 import fs from 'fs';
 import path from 'path';
 
-// Store model usage data in memory
+// keep track of model usage
 let modelUsage = {};
 
-/**
- * Initialize the tracker for a specific model
- * @param {string} modelName - Name of the model to track
- */
+// initialize a model in our tracker
 export function initializeModel(modelName) {
-  // If model doesn't exist in our tracking object, create it
+  // create entry if it doesnt exist
   if (!modelUsage[modelName]) {
     modelUsage[modelName] = {
       numApiCalls: 0,
@@ -22,43 +19,31 @@ export function initializeModel(modelName) {
   }
 }
 
-/**
- * Track an API call to a model
- * @param {string} modelName - Name of the model
- * @param {number} tokensUsed - Number of tokens used in this call
- */
+// track when we call the api
 export function trackApiCall(modelName, tokensUsed) {
-  // Make sure model is initialized
+  // make sure model exists first
   initializeModel(modelName);
 
-  // Increment the number of API calls
+  // add to the counters
   modelUsage[modelName].numApiCalls += 1;
-
-  // Add the tokens used to the total
   modelUsage[modelName].totalTokens += tokensUsed;
 
   console.log(`Tracked API call to ${modelName}: ${tokensUsed} tokens used`);
 }
 
-/**
- * Get current usage statistics for all models
- * @returns {Object} Usage statistics for all models
- */
+// get the current stats
 export function getUsageStats() {
-  // Return a copy of the usage data
+  // return copy so original doesnt get changed
   return JSON.parse(JSON.stringify(modelUsage));
 }
 
-/**
- * Save usage statistics to a JSON file
- * @param {string} filepath - Path to save the JSON file
- */
+// save stats to json file
 export function saveUsageToFile(filepath = 'model_usage.json') {
   try {
-    // Convert usage data to JSON format
+    // turn into json string
     const jsonData = JSON.stringify(modelUsage, null, 2);
 
-    // Write to file
+    // write it out
     fs.writeFileSync(filepath, jsonData);
 
     console.log(`Model usage saved to ${filepath}`);
@@ -67,9 +52,7 @@ export function saveUsageToFile(filepath = 'model_usage.json') {
   }
 }
 
-/**
- * Reset all tracking data
- */
+// reset everything
 export function resetTracking() {
   modelUsage = {};
   console.log('Model tracking data reset');

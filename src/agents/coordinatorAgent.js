@@ -1,18 +1,12 @@
-// Name: Parsa Salah
-// Student ID: salahshp
-// This file implements the coordinator agent that manages the workflow
+// name: parsa salah
+// student id: salahshp
+// coordinator agent - manages workflow
 
 import { MCPClient } from '../mcp/mcpClient.js';
 import { trackApiCall } from '../utils/modelTracker.js';
 import Anthropic from '@anthropic-ai/sdk';
 
-/**
- * Coordinator Agent - manages the overall workflow
- * Responsibilities:
- * - Parse user requirements
- * - Coordinate between code and test generation agents
- * - Ensure all requirements are met
- */
+// coordinator agent - manages the workflow between other agents
 export class CoordinatorAgent {
   constructor(apiKey) {
     // Create MCP client for communication
@@ -29,11 +23,7 @@ export class CoordinatorAgent {
     this.modelName = 'claude-3-haiku-20240307';
   }
 
-  /**
-   * Parse requirements from user input
-   * @param {string} requirements - User's requirements text
-   * @returns {Object} Parsed requirements
-   */
+  // parse user requirements using claude
   async parseRequirements(requirements) {
     try {
       console.log('Coordinator: Parsing requirements...');
@@ -85,11 +75,7 @@ CONSTRAINTS:
     }
   }
 
-  /**
-   * Coordinate code generation process
-   * @param {Object} requirements - Parsed requirements
-   * @returns {Object} Generated code and tests
-   */
+  // coordinate the whole code generation process
   async coordinateGeneration(requirements) {
     console.log('Coordinator: Starting code generation coordination...');
 

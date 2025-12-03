@@ -1,6 +1,6 @@
-// Name: Abdul-Salam Bdaiwi, Leah Kang, Parsa Salah
-// Student ID: bdaiwia, leahyk, salahshp
-// This file orchestrates the multi-agent system
+// name: abdul-salam bdaiwi, leah kang, parsa salah
+// student id: bdaiwia, leahyk, salahshp
+// orchestrates all the agents
 
 import { CoordinatorAgent } from './agents/coordinatorAgent.js';
 import { CoderAgent } from './agents/coderAgent.js';
@@ -9,10 +9,7 @@ import { saveUsageToFile, resetTracking } from './utils/modelTracker.js';
 import fs from 'fs';
 import path from 'path';
 
-/**
- * Main orchestrator for the multi-agent system
- * Manages the workflow from requirements to code generation
- */
+// orchestrator - runs the whole system
 export class Orchestrator {
   constructor(apiKey) {
     // Initialize all agents
@@ -23,11 +20,7 @@ export class Orchestrator {
     console.log('Orchestrator: All agents initialized');
   }
 
-  /**
-   * Process user requirements and generate code + tests
-   * @param {string} requirements - User's requirements
-   * @returns {Object} Generated code, tests, and file paths
-   */
+  // process requirements and generate code + tests
   async processRequirements(requirements) {
     try {
       console.log('Orchestrator: Starting process...');

@@ -1,6 +1,6 @@
-// Name: Abdul-Salam Bdaiwi, Leah Kang, Parsa Salah
-// Student ID: bdaiwia, leahyk, salahshp
-// Main entry point for the AI Coder application
+// name: abdul-salam bdaiwi, leah kang, parsa salah
+// student id: bdaiwia, leahyk, salahshp
+// main server file
 
 import express from 'express';
 import dotenv from 'dotenv';
@@ -35,9 +35,7 @@ if (!process.env.ANTHROPIC_API_KEY) {
 // Initialize orchestrator
 const orchestrator = new Orchestrator(process.env.ANTHROPIC_API_KEY);
 
-/**
- * Main endpoint to generate code from requirements
- */
+// main endpoint to generate code from requirements
 app.post('/generate', async (req, res) => {
   try {
     const { requirements } = req.body;
@@ -89,9 +87,7 @@ app.post('/generate', async (req, res) => {
   }
 });
 
-/**
- * Endpoint to get model usage statistics
- */
+// endpoint to get model usage stats
 app.get('/usage', (req, res) => {
   try {
     const usage = getUsageStats();
@@ -101,10 +97,8 @@ app.get('/usage', (req, res) => {
   }
 });
 
-/**
- * Test endpoint for UI testing without API key
- * Remove this before final submission!
- */
+// test endpoint for ui testing without api key
+// remove this before final submission!
 app.post('/generate-test', (req, res) => {
   console.log('Test mode: Generating sample response');
 
@@ -217,9 +211,7 @@ if __name__ == '__main__':
   });
 });
 
-/**
- * Health check endpoint
- */
+// health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });

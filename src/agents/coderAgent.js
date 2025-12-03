@@ -1,27 +1,21 @@
-// Name: Abdul-Salam Bdaiwi
-// Student ID: bdaiwia
-// This file implements the code generation agent
+// name: abdul-salam bdaiwi
+// student id: bdaiwia
+// agent that generates code
 
 import { MCPClient } from '../mcp/mcpClient.js';
 import { trackApiCall } from '../utils/modelTracker.js';
 import Anthropic from '@anthropic-ai/sdk';
 
-/**
- * Coder Agent - generates code based on requirements
- * Responsibilities:
- * - Generate executable code from requirements
- * - Ensure code meets all specified requirements
- * - Write clean, runnable code
- */
+// this agent generates code from requirements
 export class CoderAgent {
   constructor(apiKey) {
-    // Create MCP client for communication
+    // setup mcp client
     this.mcpClient = new MCPClient('coder', {
       role: 'code_generator',
       description: 'Generates code from requirements'
     });
 
-    // Initialize Anthropic client
+    // setup claude
     this.anthropic = new Anthropic({
       apiKey: apiKey
     });
@@ -29,16 +23,12 @@ export class CoderAgent {
     this.modelName = 'claude-3-haiku-20240307';
   }
 
-  /**
-   * Generate code from requirements
-   * @param {Object} requirements - Requirements object
-   * @returns {string} Generated code
-   */
+  // main function to generate code
   async generateCode(requirements) {
     try {
       console.log('Coder: Generating code...');
 
-      // Use Claude to generate code
+      // call claude to make the code
       const message = await this.anthropic.messages.create({
         model: this.modelName,
         max_tokens: 4096,
@@ -60,7 +50,7 @@ Provide ONLY the Python code, no explanations before or after.`
         }]
       });
 
-      // Track the API usage
+      // count the tokens
       const tokensUsed = message.usage.input_tokens + message.usage.output_tokens;
       trackApiCall(this.modelName, tokensUsed);
 
@@ -76,7 +66,7 @@ Provide ONLY the Python code, no explanations before or after.`
     }
   }
 
-  /**
+  //
    * Start listening for messages from coordinator
    */
   async listen() {
@@ -86,9 +76,9 @@ Provide ONLY the Python code, no explanations before or after.`
     // For this project, we'll have the coordinator call the agent directly
   }
 
-  /**
+  //
    * Process a code generation request
-   * @param {Object} request - Request from coordinator
+   * request: Request from coordinator
    */
   async processRequest(request) {
     if (request.type === 'generate_code') {

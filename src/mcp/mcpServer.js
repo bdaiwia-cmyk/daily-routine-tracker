@@ -1,27 +1,20 @@
-// Name: Leah Kang
-// Student ID: leahyk
-// This file implements a simple MCP (Model Context Protocol) server for agent communication
+// name: leah kang
+// student id: leahyk
+// mcp server for agent communication
 
-/**
- * MCP Server - handles communication between agents
- * This is a simplified implementation of MCP for our multi-agent system
- */
+// mcp server - lets agents talk to each other
 class MCPServer {
   constructor() {
-    // Store registered agents
+    // keep track of all agents
     this.agents = new Map();
 
-    // Store messages between agents
+    // queue for messages between agents
     this.messageQueue = [];
 
     console.log('MCP Server initialized');
   }
 
-  /**
-   * Register an agent with the server
-   * @param {string} agentId - Unique identifier for the agent
-   * @param {Object} agentInfo - Information about the agent
-   */
+  // register a new agent
   registerAgent(agentId, agentInfo) {
     this.agents.set(agentId, {
       ...agentInfo,
@@ -31,14 +24,9 @@ class MCPServer {
     console.log(`Agent registered: ${agentId}`);
   }
 
-  /**
-   * Send a message from one agent to another
-   * @param {string} fromAgentId - Sender agent ID
-   * @param {string} toAgentId - Receiver agent ID
-   * @param {Object} message - Message content
-   */
+  // send message from one agent to another
   sendMessage(fromAgentId, toAgentId, message) {
-    // Check if both agents are registered
+    // make sure both agents exist
     if (!this.agents.has(fromAgentId)) {
       throw new Error(`Sender agent ${fromAgentId} not registered`);
     }
@@ -47,7 +35,7 @@ class MCPServer {
       throw new Error(`Receiver agent ${toAgentId} not registered`);
     }
 
-    // Add message to queue
+    // put message in the queue
     const messageObj = {
       id: Date.now(),
       from: fromAgentId,
@@ -63,38 +51,27 @@ class MCPServer {
     return messageObj;
   }
 
-  /**
-   * Get messages for a specific agent
-   * @param {string} agentId - Agent ID to get messages for
-   * @returns {Array} Array of messages
-   */
+  // get all messages for an agent
   getMessages(agentId) {
-    // Filter messages where this agent is the receiver
+    // find messages for this agent
     const messages = this.messageQueue.filter(msg => msg.to === agentId);
 
-    // Remove retrieved messages from queue
+    // remove messages we just got
     this.messageQueue = this.messageQueue.filter(msg => msg.to !== agentId);
 
     return messages;
   }
 
-  /**
-   * Get list of all registered agents
-   * @returns {Array} Array of agent IDs
-   */
+  // get list of all agents
   getAgents() {
     return Array.from(this.agents.keys());
   }
 
-  /**
-   * Get information about a specific agent
-   * @param {string} agentId - Agent ID
-   * @returns {Object} Agent information
-   */
+  // get info about a specific agent
   getAgentInfo(agentId) {
     return this.agents.get(agentId);
   }
 }
 
-// Export a single instance of the server
+// make one server for everyone to use
 export const mcpServer = new MCPServer();

@@ -1,18 +1,12 @@
-// Name: Parsa Salah
-// Student ID: salahshp
-// This file implements the test generation agent
+// name: parsa salah
+// student id: salahshp
+// tester agent - generates test cases
 
 import { MCPClient } from '../mcp/mcpClient.js';
 import { trackApiCall } from '../utils/modelTracker.js';
 import Anthropic from '@anthropic-ai/sdk';
 
-/**
- * Tester Agent - generates test cases for the code
- * Responsibilities:
- * - Generate comprehensive test cases
- * - Ensure at least 10 test cases
- * - Make tests runnable and realistic
- */
+// tester agent - makes test cases for the generated code
 export class TesterAgent {
   constructor(apiKey) {
     // Create MCP client for communication
@@ -29,12 +23,7 @@ export class TesterAgent {
     this.modelName = 'claude-3-haiku-20240307';
   }
 
-  /**
-   * Generate test cases for the code
-   * @param {string} code - Generated code to test
-   * @param {Object} requirements - Original requirements
-   * @returns {string} Generated test code
-   */
+  // generate test cases for the code
   async generateTests(code, requirements) {
     try {
       console.log('Tester: Generating test cases...');
@@ -83,9 +72,7 @@ Provide ONLY the Python test code, no explanations before or after.`
     }
   }
 
-  /**
-   * Start listening for messages from coordinator
-   */
+  // listen for messages from coordinator
   async listen() {
     console.log('Tester: Listening for requests...');
 
@@ -93,10 +80,7 @@ Provide ONLY the Python test code, no explanations before or after.`
     // For this project, we'll have the coordinator call the agent directly
   }
 
-  /**
-   * Process a test generation request
-   * @param {Object} request - Request from coordinator
-   */
+  // process test generation request
   async processRequest(request) {
     if (request.type === 'generate_tests') {
       const tests = await this.generateTests(request.code, request.requirements);

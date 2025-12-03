@@ -1,41 +1,29 @@
-// Name: Leah Kang
-// Student ID: leahyk
-// This file implements the MCP client that agents use to communicate
+// name: leah kang
+// student id: leahyk
+// mcp client that agents use to talk
 
 import { mcpServer } from './mcpServer.js';
 
-/**
- * MCP Client - used by agents to communicate with the server
- */
+// mcp client - each agent gets one of these
 export class MCPClient {
   constructor(agentId, agentInfo) {
     this.agentId = agentId;
 
-    // Register this agent with the server
+    // register with the server
     mcpServer.registerAgent(agentId, agentInfo);
   }
 
-  /**
-   * Send a message to another agent
-   * @param {string} toAgentId - Receiver agent ID
-   * @param {Object} message - Message to send
-   */
+  // send message to another agent
   send(toAgentId, message) {
     return mcpServer.sendMessage(this.agentId, toAgentId, message);
   }
 
-  /**
-   * Receive messages for this agent
-   * @returns {Array} Array of messages
-   */
+  // get messages for this agent
   receive() {
     return mcpServer.getMessages(this.agentId);
   }
 
-  /**
-   * Get list of all agents
-   * @returns {Array} Array of agent IDs
-   */
+  // see all agents
   listAgents() {
     return mcpServer.getAgents();
   }
